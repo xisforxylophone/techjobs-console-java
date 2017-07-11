@@ -47,22 +47,27 @@ public class JobData {
         return values;
     }
 
+    /**
+     * loops through allJobs, searching for any matches
+     * adds to row HashMap then adds to job HashMap if it isn't
+     * already in the HashMap
+    */
     public static ArrayList<HashMap<String, String>> findByValue(String value) {
         loadData();
 
         ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
-
-        for (HashMap<String, String> row : allJobs) {
+        
+        for (HashMap<String,String> row : allJobs) {
             for (String rows : row.keySet()) {
-                    String aValue = row.get(rows);
-                if (aValue.toLowerCase().contains(value.toLowerCase())) {
-                    if (!jobs.contains(value)) {
+                String aValue = row.get(rows);
+
+                if (aValue.toLowerCase().contains(value.toLowerCase())){
+                    if(!jobs.contains(row)) {
                         jobs.add(row);
                     }
-
-            }}
+                }
             }
-
+        }
         return jobs;
     }
 
